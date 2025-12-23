@@ -41,7 +41,7 @@ Join our community of developers creating universal apps.
 
 1. Установить зависимости и настроить
 ```bash
-   npm install
+   yarn
    npm install -g eas-cli
    eas login
    eas build:configure
