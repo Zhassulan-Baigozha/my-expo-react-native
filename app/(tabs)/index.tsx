@@ -5,6 +5,7 @@ import { HelloWave } from "@/components/hello-wave";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import pkg from "../../package.json";
 
 export default function HomeScreen() {
   return (
@@ -18,7 +19,7 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Welcome! {pkg.version}</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
