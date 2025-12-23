@@ -13,7 +13,7 @@ export const unstable_settings = {
   anchor: "(tabs)",
 };
 
-export default function RootLayout() {
+const RootLayout = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -29,3 +29,4 @@ export default function RootLayout() {
     </ThemeProvider>
   );
 }
+export default RootLayout;
