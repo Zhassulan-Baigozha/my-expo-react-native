@@ -1,6 +1,5 @@
 // src/app/(tabs)/_layout.tsx
 import { Tabs } from "expo-router";
-import { useColorScheme } from "react-native";
 import {
   ExploreTabIcon,
   HapticTab,
@@ -9,12 +8,10 @@ import {
 import { Colors } from "@/src/constants/theme";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors.light.text,
         headerShown: false,
         tabBarButton: HapticTab,
       }}
