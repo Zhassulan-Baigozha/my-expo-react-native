@@ -2,7 +2,12 @@
 import type { BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";
 import { PlatformPressable } from "@react-navigation/elements";
 import * as Haptics from "expo-haptics";
-import { IconSymbol } from "./ui/icon-symbol.ios";
+import {
+  SymbolView,
+  type SymbolViewProps,
+  type SymbolWeight,
+} from "expo-symbols";
+import type { StyleProp, ViewStyle } from "react-native";
 
 export const HapticTab = (props: BottomTabBarButtonProps) => (
   <PlatformPressable
@@ -13,6 +18,34 @@ export const HapticTab = (props: BottomTabBarButtonProps) => (
       }
       props.onPressIn?.(ev);
     }}
+  />
+);
+
+const IconSymbol = ({
+  name,
+  size = 24,
+  color,
+  style,
+  weight = "regular",
+}: Readonly<{
+  name: SymbolViewProps["name"];
+  size?: number;
+  color: string;
+  style?: StyleProp<ViewStyle>;
+  weight?: SymbolWeight;
+}>) => (
+  <SymbolView
+    weight={weight}
+    tintColor={color}
+    resizeMode="scaleAspectFit"
+    name={name}
+    style={[
+      {
+        width: size,
+        height: size,
+      },
+      style,
+    ]}
   />
 );
 

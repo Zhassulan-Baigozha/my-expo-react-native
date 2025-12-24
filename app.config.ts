@@ -1,5 +1,7 @@
 import pkg from "./package.json";
 
+export const asd = "asdasd";
+
 export default {
   expo: {
     name: pkg.name,

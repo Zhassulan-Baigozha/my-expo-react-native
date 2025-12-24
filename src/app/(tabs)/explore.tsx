@@ -2,7 +2,5 @@
 import { ThemedText } from "@/src/components/themed-text";
 
 export default function TabTwoScreen() {
-  return (
-    <ThemedText type="title">Title</ThemedText>
-  );
+  return <ThemedText type="title">Title</ThemedText>;
 }

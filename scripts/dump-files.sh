@@ -41,7 +41,7 @@ dump_dir () {
 # 📦 files
 [ -f README.md ] && dump_file "README.md"
 [ -f package.json ] && dump_file "package.json"
-[ -f app.json ] && dump_file "app.json"
+[ -f app.config.ts ] && dump_file "app.config.ts"
 [ -f eas.json ] && dump_file "eas.json"
 [ -f expo-env.d.ts ] && dump_file "expo-env.d.ts"
 [ -f tsconfig.json ] && dump_file "tsconfig.json"
@@ -49,12 +49,6 @@ dump_dir () {
 # 📂 folders
 [ -d .expo ] && dump_dir ".expo"
 [ -d .vscode ] && dump_dir ".vscode"
-[ -d app ] && dump_dir "app"
-[ -d assets ] && dump_dir "assets"
-[ -d components ] && dump_dir "components"
-[ -d hooks ] && dump_dir "hooks"
-[ -d scripts ] && dump_dir "scripts"
-[ -d constants ] && dump_dir "constants"
-
+[ -d src ] && dump_dir "src"
 
 echo "✔ dumped: files → $OUT"

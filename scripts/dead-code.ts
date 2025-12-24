@@ -2,21 +2,14 @@
 // scripts/dead-code.ts
 import { execSync } from "node:child_process";
 
-const IGNORED_PATTERNS = [
-  " - default",
-  "unstable_settings",
-];
+const IGNORED_PATTERNS = ["unstable_settings"];
 
 type ExecError = Error & {
   stdout?: Buffer | string;
 };
 
 function isExecError(error: unknown): error is ExecError {
-  return (
-    typeof error === "object" &&
-    error !== null &&
-    "stdout" in error
-  );
+  return typeof error === "object" && error !== null && "stdout" in error;
 }
 
 function run() {
@@ -28,11 +21,10 @@ function run() {
       stdio: ["pipe", "pipe", "ignore"],
     });
   } catch (error: unknown) {
-    // ts-prune может завершаться с кодом 1 — это ожидаемо
     if (isExecError(error)) {
       output = error.stdout?.toString() ?? "";
     } else {
-      throw error; // реальная неожиданная ошибка
+      throw error;
     }
   }
 
@@ -43,8 +35,28 @@ function run() {
       (line) => !IGNORED_PATTERNS.some((pattern) => line.includes(pattern)),
     );
 
-  if (lines.length > 0) {
-    console.log(lines.join("\n"));
+  const defaultLines: string[] = [];
+  const otherLines: string[] = [];
+
+  for (const line of lines) {
+    if (line.includes(" - default")) {
+      defaultLines.push(line);
+    } else {
+      otherLines.push(line);
+    }
+  }
+
+  // Вывод default экспорта как предупреждение
+  if (defaultLines.length > 0) {
+    console.log("⚠️  Default exports (warning):");
+    console.log(defaultLines.join("\n"));
+    console.log("");
+  }
+
+  // Вывод остального мёртвого кода как ошибка
+  if (otherLines.length > 0) {
+    console.log(otherLines.join("\n"));
+    console.log("");
     process.exit(1);
   }
 
