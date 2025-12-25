@@ -47,7 +47,7 @@ dump_dir () {
 [ -f tsconfig.json ] && dump_file "tsconfig.json"
 
 # 📂 folders
-[ -d .expo ] && dump_dir ".expo"
+# [ -d .expo ] && dump_dir ".expo"
 [ -d src ] && dump_dir "src"
 
 echo "✔ dumped: files → $OUT"
