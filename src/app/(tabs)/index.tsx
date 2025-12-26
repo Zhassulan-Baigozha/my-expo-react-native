@@ -1,33 +1,44 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { calculatePregnancyTerm } from "@/src/utils/calculatePregnancyTerm";
 
 export default function Home() {
-  const [name, setName] = useState("");
-  const [dob, setDob] = useState("");
+  const [name, setName] = useState("Rose");
+  const [dob, setDob] = useState("2026.05.22");
 
+  const result = calculatePregnancyTerm("2026-05-22", new Date("2025-12-26"));
   return (
     <View style={styles.containerWrapper}>
-      <div style={styles.containerInner}>
-        <div style={styles.containerContent}>
+      <View style={styles.containerInner}>
+        <View style={styles.containerContent}>
           <TextInput
             label="Имя"
             value={name}
-            onChangeText={val => { setName(val) }}
+            onChangeText={(val) => {
+              setName(val);
+            }}
           />
           <TextInput
             label="Предполагаемая дата родов"
             value={dob}
-            onChangeText={val => { setDob(val) }}
+            onChangeText={(val) => {
+              setDob(val);
+            }}
           />
-          <Button mode="contained" onPress={() => console.log('Pressed')}
+          <Button
+            mode="contained"
+            onPress={() => console.log("Pressed")}
             contentStyle={styles.buttonContent}
             style={styles.button}
           >
             Сохранить
           </Button>
-        </div>
-      </div>
+          <Text>weeks = {JSON.stringify(result.weeks)}</Text>
+          <Text>days = {JSON.stringify(result.days)}</Text>
+          <Text>totalDays = {JSON.stringify(result.totalDays)}</Text>
+        </View>
+      </View>
     </View>
   );
 }
