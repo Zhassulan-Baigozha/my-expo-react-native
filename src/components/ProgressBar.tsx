@@ -1,7 +1,7 @@
 // src/components/ProgressBar.tsx
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
-import { colors } from "../constants/colors";
+import { COLORS } from "../constants/colors";
 
 export function ProgressBar() {
   return (
@@ -9,7 +9,7 @@ export function ProgressBar() {
       <View style={styles.progressBar1} />
       <LinearGradient
         style={styles.progressBar2}
-        colors={[colors.lightCoralRed, colors.coralRed]}
+        colors={[COLORS.coralShades.coral3, COLORS.coralShades.coral9]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
       />
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   progressBar2: {
     height: 10,
-    backgroundColor: colors.lightCoralRed,
+    backgroundColor: COLORS.coralShades.coral3,
     borderRadius: 5,
     position: "relative",
     top: -10,

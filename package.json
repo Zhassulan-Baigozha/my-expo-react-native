@@ -1,7 +1,7 @@
 {
   "name": "zhass-expo",
   "main": "expo-router/entry",
-  "version": "1.2.6",
+  "version": "1.2.8",
   "scripts": {
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
