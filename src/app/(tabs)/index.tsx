@@ -3,6 +3,7 @@ import { useState } from "react";
 import { StyleSheet, Text, TextInput as TextInputRN, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { PickerDueDate } from "@/src/components/PickerDueDate";
 import { ProgressBar } from "@/src/components/ProgressBar";
 import { DUE_DATE_FULL } from "@/src/constants";
 import { COLORS } from "@/src/constants/colors";
@@ -17,53 +18,52 @@ export default function Home() {
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
       <View style={styles.containerWrapper}>
-        <View>
-          {!isFinished && (
-            <View style={styles.containerContent}>
-              <TextInput
-                label="Имя"
-                value={name}
-                onChangeText={(val) => {
-                  setName(val);
-                }}
-              />
-              <TextInputRN
-                style={styles.inputRN}
-                onChangeText={(val) => {
-                  setDueDate(val);
-                }}
-                value={dueDate}
-                placeholder="Предполагаемая дата родов"
-              />
-              <TextInput
-                label="Предполагаемая дата родов"
-                value={dueDate}
-                onChangeText={(val) => {
-                  setDueDate(val);
-                }}
-              />
-              <Button
-                mode="contained"
-                onPress={() => {
-                  setIsFinished(true);
-                }}
-                contentStyle={styles.buttonContent}
-                style={styles.button}
-              >
-                Сохранить
-              </Button>
-            </View>
-          )}
-          <View style={styles.cardContainer}>
-            <Text>Недель {weeks}</Text>
-            <Text>Дней до рождения {DUE_DATE_FULL - totalDays}</Text>
-            <Text>Дней {days}</Text>
-            <Text>Всего дней {totalDays}</Text>
-            <Text>asd</Text>
-            <ProgressBar />
-            <Text>asd</Text>
+        {!isFinished && (
+          <View style={styles.containerContent}>
+            <TextInput
+              label="Имя"
+              value={name}
+              onChangeText={(val) => {
+                setName(val);
+              }}
+            />
+            <TextInputRN
+              style={styles.inputRN}
+              onChangeText={(val) => {
+                setDueDate(val);
+              }}
+              value={dueDate}
+              placeholder="Предполагаемая дата родов"
+            />
+            <TextInput
+              label="Предполагаемая дата родов"
+              value={dueDate}
+              onChangeText={(val) => {
+                setDueDate(val);
+              }}
+            />
+            <Button
+              mode="contained"
+              onPress={() => {
+                setIsFinished(true);
+              }}
+              contentStyle={styles.buttonContent}
+              style={styles.button}
+            >
+              Сохранить
+            </Button>
           </View>
+        )}
+        <View style={styles.cardContainer}>
+          <Text>Недель {weeks}</Text>
+          <Text>Дней до рождения {DUE_DATE_FULL - totalDays}</Text>
+          <Text>Дней {days}</Text>
+          <Text>Всего дней {totalDays}</Text>
+          <Text>asd</Text>
+          <ProgressBar />
+          <Text>asd</Text>
         </View>
+        <PickerDueDate />
       </View>
     </SafeAreaView>
   );
