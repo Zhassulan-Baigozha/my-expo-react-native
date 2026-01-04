@@ -1,10 +1,11 @@
 // src/app/(tabs)/index.tsx
 import { useState } from "react";
-import { StyleSheet, Text, TextInput as TextInputRN, View } from "react-native";
+import { StyleSheet, TextInput as TextInputRN, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PickerDueDate } from "@/src/components/PickerDueDate";
 import { ProgressBar } from "@/src/components/ProgressBar";
+import { Typography } from "@/src/components/Typography";
 import { DUE_DATE_FULL } from "@/src/constants";
 import { COLORS } from "@/src/constants/colors";
 import { calculatePregnancyTerm } from "@/src/utils/calculatePregnancyTerm";
@@ -55,13 +56,16 @@ export default function Home() {
           </View>
         )}
         <View style={styles.cardContainer}>
-          <Text>Недель {weeks}</Text>
-          <Text>Дней до рождения {DUE_DATE_FULL - totalDays}</Text>
-          <Text>Дней {days}</Text>
-          <Text>Всего дней {totalDays}</Text>
-          <Text>asd</Text>
-          <ProgressBar />
-          <Text>asd</Text>
+          <ProgressBar progress={(DUE_DATE_FULL - totalDays) / DUE_DATE_FULL} />
+          <Typography fontClass="body1Medium">
+            Недель {weeks}, Дней {days}
+          </Typography>
+          <Typography fontClass="heading3">
+            Дней до рождения {DUE_DATE_FULL - totalDays}
+          </Typography>
+          <Typography fontClass="body1Regular">
+            Всего дней {totalDays}
+          </Typography>
         </View>
         <PickerDueDate />
       </View>

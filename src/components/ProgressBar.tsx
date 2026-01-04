@@ -1,17 +1,28 @@
-// src/components/ProgressBar.tsx
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";
 import { COLORS } from "../constants/colors";
 
-export function ProgressBar() {
+interface ProgressBarProps {
+  /** значение от 0 до 1 */
+  progress: number;
+}
+
+export function ProgressBar({ progress }: Readonly<ProgressBarProps>) {
+  const clampedProgress = Math.max(0, Math.min(progress, 1));
+  console.log('clampedProgress = ', clampedProgress);
+
   return (
     <View style={styles.progressBarWrapper}>
-      <View style={styles.progressBar1} />
+      <View style={styles.progressBarBackground} />
+
       <LinearGradient
-        style={styles.progressBar2}
         colors={[COLORS.coralShades.coral3, COLORS.coralShades.coral9]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
+        style={[
+          styles.progressBarFill,
+          { width: `${clampedProgress * 100}%` },
+        ]}
       />
     </View>
   );
@@ -20,18 +31,15 @@ export function ProgressBar() {
 const styles = StyleSheet.create({
   progressBarWrapper: {
     height: 10,
+    borderRadius: 5,
+    overflow: "hidden",
   },
-  progressBar1: {
-    height: 10,
+  progressBarBackground: {
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: "lightgray",
-    borderRadius: 5,
   },
-  progressBar2: {
+  progressBarFill: {
     height: 10,
-    backgroundColor: COLORS.coralShades.coral3,
     borderRadius: 5,
-    position: "relative",
-    top: -10,
-    width: "70%",
   },
 });
